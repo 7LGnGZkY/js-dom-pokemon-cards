@@ -18,10 +18,6 @@ for (const pokemon of data) {
    img.setAttribute('class', 'card--img');
    img.setAttribute('width', 256);
    img.src = pokemon.sprites.other['official-artwork']['front_default'];
-
-   // Create texts
-   const cardTexts = document.createElement('ul');
-   cardTexts.setAttribute('class', 'card--text');
 }
 
 //You can start simple and just render a single
