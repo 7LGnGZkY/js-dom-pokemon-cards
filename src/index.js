@@ -18,8 +18,31 @@ for (const pokemon of data) {
    img.setAttribute('class', 'card--img');
    img.setAttribute('width', 256);
    img.src = pokemon.sprites.other['official-artwork']['front_default'];
-}
 
-//You can start simple and just render a single
-//pokemon card from the first element
-console.log(data[0]);
+   // Create textx
+   const cardTexts = document.createElement('ul');
+   cardTexts.setAttribute('class', 'card--text');
+
+   for (let j = 0; j < 6; j++) {
+      const text = document.createElement('li');
+      text.innerText = `${pokemon.stats[j].stat.name.toUpperCase()} : ${
+         pokemon.stats[j]['base_stat']
+      }`;
+      cardTexts.append(text);
+   }
+
+   // Version
+   const versionTexts = document.createElement('div');
+   versionTexts.innerText = 'Appears in:';
+   versionTexts.setAttribute('class', 'card--text');
+
+   const text = document.createElement('p');
+   for (const index of pokemon['game_indices']) {
+      text.innerText += `${index.version.name}, `;
+   }
+   versionTexts.append(text);
+
+   // Append
+   card.append(pokemonName, img, cardTexts, versionTexts);
+   cards.append(card);
+}
